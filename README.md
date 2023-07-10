@@ -6,6 +6,19 @@
 
 CRUD - это аббревиатура, пришедшая из мира компьютерного программирования и обозначающая четыре функции, которые считаются необходимыми для реализации приложения постоянного хранения: создание, чтение, обновление и удаление.
 
+### 1. login 
+![Login Page](public/Imgs/spa1.jpg)
+
+### 2. registration 
+![Login Page](public/Imgs/spa2.jpg)
+
+### 3. CRUD USERS
+![Login Page](public/Imgs/spa4.jpg)
+
+### 4. CRUD ROLES
+![Login Page](public/Imgs/spa5.jpg)
+
+
 
 <details>
  <summary><h2>Содержимое для использования</h2></summary>
