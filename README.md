@@ -10,13 +10,13 @@ CRUD - это аббревиатура, пришедшая из мира ком�
 ![Login Page](public/Imgs/spa1.jpg)
 
 ### 2. registration 
-![Login Page](public/Imgs/spa2.jpg)
+![registration](public/Imgs/spa2.jpg)
 
 ### 3. CRUD USERS
-![Login Page](public/Imgs/spa4.jpg)
+![CRUD USERS](public/Imgs/spa4.jpg)
 
 ### 4. CRUD ROLES
-![Login Page](public/Imgs/spa5.jpg)
+![CRUD ROLES](public/Imgs/spa5.jpg)
 
 
 
@@ -351,4 +351,46 @@ scrape_configs:
 ```
 </details>
 
+<details>
+  <summary><h2>Display metrics in my app</h2></summary>
+
+![Login Page](public/Imgs/spa8.jpg)
+    
+</details>
+
+<details>
+  <summary><h2>Prometheus</h2></summary>
+
+![Prometheus](public/Imgs/prometheus1.jpg)
+![Prometheus](public/Imgs/promethes2.jpg)
+![Prometheus](public/Imgs/prometheus3.jpg)
+![Prometheus](public/Imgs/prometheus4.jpg)
+![Prometheus](public/Imgs/prometheus5.jpg)
+![Prometheus](public/Imgs/prometheus6.jpg)
+![Prometheus](public/Imgs/prometheus7.jpg)
+![Prometheus](public/Imgs/prometheus8.jpg)
+![Prometheus](public/Imgs/prometheus9.jpg)
+![Prometheus](public/Imgs/prometheus10.jpg)
+![Prometheus](public/Imgs/prometheus11.jpg)
+
+
+</details>
+
+<details>
+  <summary><h2>Mysql-exporter </h2></summary>
+    
+![mysql-exporter](public/Imgs/mysql-exporter1.jpg)
+![mysql-exporter](public/Imgs/mysql-exporter2.jpg)
+</details>
+
+<details>
+  <summary><h2>Grafana</h2></summary>
+    
+![grafana ](public/Imgs/grafana1.jpg)
+![grafana ](public/Imgs/grafana2.jpg)
+![grafana ](public/Imgs/grafana3.jpg)
+![grafana ](public/Imgs/grafana4.jpg)
+![grafana ](public/Imgs/grafana5.jpg)
+![grafana ](public/Imgs/grafana6.jpg)
+</details>
 
