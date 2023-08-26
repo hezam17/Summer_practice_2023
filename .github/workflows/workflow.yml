@@ -1,0 +1,55 @@
+name: CI/CD & telegram actions
+on: [push]
+jobs:
+
+  build:
+    name: Build Push Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      # Container Security Scanning
+      - name: Install Trivy
+        run: |
+          wget https://github.com/aquasecurity/trivy/releases/download/v0.21.0/trivy_0.21.0_Linux-64bit.tar.gz
+          tar zxvf trivy_0.21.0_Linux-64bit.tar.gz
+          sudo mv trivy /usr/local/bin/
+
+
+      - name: Build and Push Docker Image
+        run: |
+          docker-compose build
+          echo ${{ secrets.DOCKERHUB_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          docker-compose push
+        env:
+          DOCKER_BUILDKIT: 1
+
+
+      - name: Scan Container Image
+        run: trivy image ${{ secrets.DOCKERHUB_USERNAME }}/spa:latest\
+
+
+
+      # Sending success or failure notifications to Telegram
+      - name: Send Notification on Success
+        if: success()
+        uses: ./
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ✅ **CI/CD Completed Successfully!**
+            New push on branch: `${{ github.ref }}`
+            Commit Message: `${{ github.event.head_commit.message }}`
+
+      - name: Send Notification on Failure
+        if: failure()
+        uses: ./
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ❌ **CI/CD Failed!**
+            New push on branch: `${{ github.ref }}`
+            Commit Message: `${{ github.event.head_commit.message }}`
+

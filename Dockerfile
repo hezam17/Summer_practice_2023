@@ -1,6 +1,6 @@
-FROM php:8.2.0-fpm
+# Stage 1: Build PHP environment
+FROM php:8.2.0-fpm as php_stage
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
@@ -11,27 +11,27 @@ RUN apt-get update && apt-get install -y \
     curl \
     && docker-php-ext-install zip pdo_mysql pdo_pgsql
 
-# Install GD extension
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
 
-# Install Node.js and npm
 RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
-# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 WORKDIR /var/www/html
-
-# Copy application files
 COPY . .
-
-# Set max_execution_time
 RUN echo "php_value[max_execution_time] = 120" >> /usr/local/etc/php/conf.d/docker-php-max-execution-time.ini
-
-# Install PHP dependencies
 RUN composer install
-
-# Install Node.js dependencies and build assets
 RUN npm install
+
+# Stage 2: Add Telegram notification system
+FROM appleboy/drone-telegram:1.3.9-linux-amd64
+
+COPY --from=php_stage /var/www/html /var/www/html
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+WORKDIR /github/workspace
+
+ENTRYPOINT ["/entrypoint.sh"]
