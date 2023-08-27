@@ -192,6 +192,9 @@ export GITHUB="true"
 3. **Запуск `/bin/drone-telegram`**: Запускает исполняемый файл `/bin/drone-telegram`, выполняя последующие действия.
 
 В итоге этот скрипт настраивает окружение, обрабатывает сообщение для Telegram (если указано), и запускает действия с использованием `/bin/drone-telegram`.
+
+![Prometheus](public/Imgs/prometheus1.jpg)
+
 </details>
 
 
